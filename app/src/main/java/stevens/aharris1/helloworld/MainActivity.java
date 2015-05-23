@@ -1,17 +1,27 @@
 package stevens.aharris1.helloworld;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
+    Button goodbyeButton;
+    TextView displayView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        goodbyeButton = (Button) findViewById(R.id.goodbyeButton);
+        displayView = (TextView) findViewById(R.id.displayText);
+        goodbyeButton.setOnClickListener(buttonHandler);
     }
 
     @Override
@@ -20,6 +30,12 @@ public class MainActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
+    View.OnClickListener buttonHandler = new View.OnClickListener(){
+        public void onClick(View v){
+            displayView.setText("Goodbye Cruel World");
+        }
+    };
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
